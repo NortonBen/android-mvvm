@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="resource" type="com.norton.mvvmbase.repository.remote.Resource"/>
+        <variable name="retryCallback" type="com.norton.mvvmbase.ui.common.RetryCallback"/>
+        <variable name="login" type="com.norton.mvvmbase.repository.remote.data.LoginAPI.Login"/>
+    </data>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:padding="40px"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="UserName"
+                android:layout_marginTop="20px"
+                />
+            <EditText
+                android:id="@+id/login_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{login.UserName}"
+                android:hint="UserName" />
+            <TextView
+
+                android:layout_marginTop="20px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mật khẩu"
+                />
+            <EditText
+                android:id="@+id/login_password"
+                android:layout_width="match_parent"
+                android:hint="Mật khẩu"
+                android:text="@{login.Password}"
+                android:inputType="textPassword"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/login_btn"
+                android:layout_marginTop="20px"
+                android:text="Đăng nhập"
+                android:background="@color/login_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/login_error"
+                android:layout_marginTop="20px"
+                android:layout_width="match_parent"
+                android:layout_height="50px" />
+        </LinearLayout>
+        <include layout="@layout/loading_state"
+            app:resource="@{resource}"
+            app:callback="@{() -> retryCallback.retry()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="200dp"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+    </android.support.constraint.ConstraintLayout>
+</layout>

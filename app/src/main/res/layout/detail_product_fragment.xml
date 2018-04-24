@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="product" type="com.norton.mvvmbase.repository.local.entity.ProductEntity"/>
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/main_content_product"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:fitsSystemWindows="true">
+        <ScrollView
+            android:fillViewport="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="WebViewLayout">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20px"
+                        >
+                        <ImageView
+                            android:src="@drawable/image"
+                            android:id="@+id/cate_image_product"
+                            android:layout_width="300px"
+                            android:layout_height="300px"
+                            app:imageByte="@{product.getImage()}"
+                            />
+                        <LinearLayout
+                            android:layout_marginLeft="260px"
+                            android:layout_marginTop="15px"
+                            android:layout_marginRight="20px"
+                            android:layout_centerVertical="true"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/cate_name_product"
+                                android:text="@{ product.getName() }"
+                                android:gravity="center"
+                                android:layout_alignParentTop="true"
+                                android:textSize="21dp"
+                                android:textColor="#3b5bd9"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:layout_marginTop="20px"
+                                android:gravity="right"
+                                android:id="@+id/cate_price_product"
+                                android:layout_below="@id/cate_name_product"
+                                android:text="@{ product.getPriceStr() }"
+                                android:layout_marginRight="30px"
+                                android:textSize="17dp"
+                                android:textColor="#e48080"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <WebView
+                        android:id="@+id/web_view_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:html="@{ product.getDetail() }"
+                        />
+                </LinearLayout>
+
+
+        </ScrollView>
+
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/comemnet_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@drawable/comment_text" />
+    </android.support.design.widget.CoordinatorLayout>
+</layout>
